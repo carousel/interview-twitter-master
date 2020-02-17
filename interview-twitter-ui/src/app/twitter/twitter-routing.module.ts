@@ -10,6 +10,7 @@ const routes: Routes = [
       {path: '', redirectTo: 'tweets', pathMatch: 'full'},
       {path: 'tweets', loadChildren: 'app/twitter/tweets/tweets.module#TweetsModule'},
       {path: 'tweets/:username', loadChildren: 'app/twitter/user-tweets/user-tweets.module#UserTweetsModule'},
+      {path: 'profile', loadChildren: 'app/twitter/user-profile/user-profile.module#UserProfileModule'}
     ],
   },
 ];

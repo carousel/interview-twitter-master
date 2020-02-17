@@ -1,0 +1,19 @@
+
+  <table class="table" id="tweets-table">
+    <thead>
+    <tr>
+      <th>Tweets</th>
+      <th>Followers</th>
+      <th>Following</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngIf="profile">
+      <td>{{profile.numberOfTweets}}</td>
+      <td>{{profile.followers}}</td>
+      <td>{{profile.following}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+
