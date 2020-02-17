@@ -19,7 +19,7 @@ public class UserProfileFacade {
   private static final String NUMBER_OF_TWEETS = "numberOfTweets";
   private static final String FOLLOWERS = "followers";
   private static final String FOLLOWING = "following";
-  
+
   private TweetService tweetService;
   private UserService userService;
 

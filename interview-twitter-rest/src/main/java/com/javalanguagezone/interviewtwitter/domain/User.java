@@ -26,6 +26,12 @@ public class User implements UserDetails {
   @GeneratedValue(strategy = IDENTITY)
   private Long id;
 
+  @Column
+  private String firstName;
+
+  @Column
+  private String lastName;
+
   @Column(unique = true)
   private String username;
 
@@ -40,12 +46,14 @@ public class User implements UserDetails {
   @JsonIgnore
   private String password;
 
-  public User(String username, String password) {
+  public User(String firstName, String lastName, String username, String password) {
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.username = username;
     this.password = password;
   }
 
-  public void addFollowing(User... users){
+  public void addFollowing(User... users) {
     following.addAll(Arrays.asList(users));
   }
 
