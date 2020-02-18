@@ -3,9 +3,11 @@ import {HttpClient} from '@angular/common/http';
 import {TweetModel} from '../../models/tweet.model';
 import {UserProfileModel} from '../../models/user-profile.model';
 import {Observable} from 'rxjs/Observable';
+import {RegisterModel} from '../../models/register.model';
 
 const ENDPOINT_BASE = '/api/tweets';
 const ENDPOINT_PROFILE = '/api/profile';
+const ENDPOINT_REGISTER = '/api/register';
 
 @Injectable()
 export class TweetService {
@@ -27,5 +29,9 @@ export class TweetService {
 
   create(tweetContent: string) {
     return this.http.post<TweetModel>(ENDPOINT_BASE, tweetContent);
+  }
+
+  register(registerContent: string) {
+    return this.http.post<RegisterModel>(ENDPOINT_REGISTER, registerContent).subscribe();
   }
 }

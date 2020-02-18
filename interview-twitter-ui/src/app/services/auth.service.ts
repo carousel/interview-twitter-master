@@ -1,7 +1,14 @@
 import {Injectable} from '@angular/core';
 
+
 @Injectable()
 export class AuthService {
+
+  generateAuthTokenForRegistration(username: string, password: string) {
+    const authToken = this.generateAuthToken(username, password);
+    this.setAuthToken(authToken);
+    this.storeUsername(username);
+  }
 
   login(username: string, password: string) {
     const authToken = this.generateAuthToken(username, password);
@@ -47,4 +54,9 @@ export class AuthService {
   isLoggedIn() {
     return localStorage.getItem('username') != null && localStorage.getItem('token') != null;
   }
+
+  isLoggedOut() {
+    return localStorage.getItem('username') == null && localStorage.getItem('token') == null;
+  }
+
 }

@@ -43,7 +43,7 @@ public class User implements UserDetails {
   @ManyToMany(mappedBy = "following")
   private Set<User> followers = new HashSet<>();
 
-  @JsonIgnore
+  @Column
   private String password;
 
   public User(String firstName, String lastName, String username, String password) {

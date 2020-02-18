@@ -13,6 +13,8 @@
         </li>
         <li *ngIf="authService.isLoggedIn()" routerLinkActive="active"><a routerLink="/logout">Logout</a>
         </li>
+        <li *ngIf="authService.isLoggedOut()" routerLinkActive="active"><a routerLink="/register">Signup</a>
+        </li>
       </ul>
     </div>
   </div>
