@@ -4,6 +4,9 @@ import {AuthService} from '../../services/auth.service';
 import {NgForm} from '@angular/forms';
 import {TweetService} from '../../services/tweet/tweet.service';
 
+const USER_SEED = 'rogerkver';
+const USER_SEED_PASSWORD = 'password';
+
 @Component({
   moduleId: module.id,
   templateUrl: './register.component.html',
@@ -16,15 +19,15 @@ export class RegisterComponent {
   loading = false;
   incorrectCredentialsError = false;
 
-  constructor(private router: Router, private tweetService: TweetService,  private authService: AuthService) {
+  constructor(private router: Router, private tweetService: TweetService, private authService: AuthService) {
   }
 
   onSubmit(registerForm: NgForm): void {
     if (registerForm.valid) {
-      this.authService.generateAuthTokenForRegistration(registerForm.value.username, registerForm.value.password);
+      this.authService.generateAuthTokenForRegistration(USER_SEED, USER_SEED_PASSWORD);
       this.tweetService.register(registerForm.value);
       this.authService.logout();
-      // this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
     }
   }
 
