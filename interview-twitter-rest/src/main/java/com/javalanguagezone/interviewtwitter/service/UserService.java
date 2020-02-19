@@ -53,7 +53,7 @@ public class UserService implements UserDetailsService {
     return users.stream().map(UserDTO::new).collect(toList());
   }
 
-  public void createNewUser(User user) {
-    userRepository.save(user);
+  public User createNewUser(User user) {
+    return userRepository.save(user);
   }
 }
