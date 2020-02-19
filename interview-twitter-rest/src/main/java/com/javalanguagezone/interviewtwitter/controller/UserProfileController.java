@@ -30,6 +30,9 @@ public class UserProfileController {
     return userProfileFacade.getUserProfile(principal);
   }
 
+  /**
+   * log.info is here for admin informative purposes(good practice)
+   */
   @ExceptionHandler
   @ResponseStatus(BAD_REQUEST)
   public ErrorMessage handleUnknownUsernameException(UnknownUsernameException e) {

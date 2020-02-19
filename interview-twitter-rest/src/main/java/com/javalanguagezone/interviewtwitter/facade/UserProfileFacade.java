@@ -8,10 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.util.*;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.groupingByConcurrent;
-import static java.util.stream.Collectors.toList;
 
 @Service
 public class UserProfileFacade {
@@ -28,10 +24,23 @@ public class UserProfileFacade {
     this.userService = userService;
   }
 
+  /**
+   * return aggregated user profile object for client to consume
+   *
+   * @param principal authenticated user
+   * @return UserProfileDTO
+   */
   public UserProfileDTO getUserProfile(Principal principal) {
     return collectProfileData(principal);
   }
 
+  /**
+   * fetch existing data from service
+   * map profile data to simple DTO
+   *
+   * @param principal authenticated user
+   * @return UserProfileDTO
+   */
   private UserProfileDTO collectProfileData(Principal principal) {
     String username = principal.getName();
     Integer numberOfTweets = tweetService.tweetsFromUser(username).size();
@@ -40,6 +49,14 @@ public class UserProfileFacade {
     return mapProfileToDTO(numberOfTweets, followers, following);
   }
 
+  /**
+   * map profile data to DTO object
+   *
+   * @param numberOfTweets fetched number of user tweets
+   * @param followers      fetched existing followers
+   * @param following      fetched existing followed users
+   * @return UserProfileDto
+   */
   private UserProfileDTO mapProfileToDTO(Integer numberOfTweets, Integer followers, Integer following) {
     Map<String, Integer> profileData = new HashMap<>();
     profileData.put(NUMBER_OF_TWEETS, numberOfTweets);
