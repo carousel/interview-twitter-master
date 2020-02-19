@@ -29,8 +29,4 @@ public class AuthController {
     userService.createNewUser(user);
   }
 
-  @GetMapping("/users")
-  public Collection<User> getUser() {
-    return userRepository.findAll();
-  }
 }

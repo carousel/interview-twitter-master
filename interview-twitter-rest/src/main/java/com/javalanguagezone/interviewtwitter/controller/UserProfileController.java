@@ -1,15 +1,17 @@
 package com.javalanguagezone.interviewtwitter.controller;
 
 import com.javalanguagezone.interviewtwitter.controller.dto.ErrorMessage;
+import com.javalanguagezone.interviewtwitter.domain.User;
 import com.javalanguagezone.interviewtwitter.facade.UserProfileFacade;
 import com.javalanguagezone.interviewtwitter.facade.UserProfileFacade.UnknownUsernameException;
 import com.javalanguagezone.interviewtwitter.facade.dto.UserProfileDTO;
+import com.javalanguagezone.interviewtwitter.repository.UserRepository;
+import com.javalanguagezone.interviewtwitter.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 
 
@@ -20,6 +22,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 public class UserProfileController {
 
   private UserProfileFacade userProfileFacade;
+  private UserService userService;
 
   public UserProfileController(UserProfileFacade userProfileFacade) {
     this.userProfileFacade = userProfileFacade;
