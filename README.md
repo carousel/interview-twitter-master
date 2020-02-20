@@ -35,3 +35,9 @@ Implemented features should be easily understable from source code but here's th
 - View of users own tweets
 - View following users
 - View followers
+
+# Alternative implementations for user profile feature
+    1. Use Value objects instead of primitives in UserProfileDTO. Benefit is that wrapped primitives will have behavior(object) and can be modeled with valid state - using invariants
+    2. Reuse existing HTTP requests on front-end side e.g. /api/tweets. Benefit is better performance. Problem is that we will loose explicit user profile intention in code. Also front-end complexity will increase.
+    3. Call repositories directly from controller. In many cases this is perfelcty valid since profile data is used only for reporting. Tradeoff is to bypass services as convention.
+    4. Create joins between tables directly. Benefit could be slightly better performance. Tradeoff is loosing ORM API verbosity.
