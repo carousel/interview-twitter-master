@@ -22,7 +22,6 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 public class UserProfileController {
 
   private UserProfileFacade userProfileFacade;
-  private UserService userService;
 
   public UserProfileController(UserProfileFacade userProfileFacade) {
     this.userProfileFacade = userProfileFacade;

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 @SpringBootApplication
 public class InterviewTwitterApplication {
 
+  private static final String PASSWORD = "password";
+
   public static void main(String[] args) {
     SpringApplication.run(InterviewTwitterApplication.class, args);
   }
@@ -30,11 +32,11 @@ public class InterviewTwitterApplication {
 
     @Override
     public void run(ApplicationArguments args) {
-      User rogerVer = userRepository.save(new User("Roger", "Ver", "rogerkver", "password"));
-      User andreasAntonopoulos = userRepository.save(new User("Andreas", "Antonopoulos", "aantonop", "password"));
-      User vitalikButerin = userRepository.save(new User("Vitalik", "Buterin", "VitalikButerin", "password"));
-      User charlieLee = userRepository.save(new User("Charlie", "Lee", "SatoshiLite", "password"));
-      User satoshiNakamoto = userRepository.save(new User("Satoshi", "Nakamoto", "satoshiNakamoto", "password"));
+      User rogerVer = userRepository.save(new User("Roger", "Ver", "rogerkver", PASSWORD));
+      User andreasAntonopoulos = userRepository.save(new User("Andreas", "Antonopoulos", "aantonop", PASSWORD));
+      User vitalikButerin = userRepository.save(new User("Vitalik", "Buterin", "VitalikButerin", PASSWORD));
+      User charlieLee = userRepository.save(new User("Charlie", "Lee", "SatoshiLite", PASSWORD));
+      User satoshiNakamoto = userRepository.save(new User("Satoshi", "Nakamoto", "satoshiNakamoto", PASSWORD));
 
       vitalikButerin.addFollowing(satoshiNakamoto, rogerVer);
       userRepository.save(vitalikButerin);

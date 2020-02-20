@@ -1,8 +1,10 @@
 package com.javalanguagezone.interviewtwitter.service;
 
 import com.javalanguagezone.interviewtwitter.domain.User;
+import com.javalanguagezone.interviewtwitter.exception.InterviewTwitterRuntimeException;
 import com.javalanguagezone.interviewtwitter.repository.UserRepository;
 import com.javalanguagezone.interviewtwitter.service.dto.UserDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,6 +19,7 @@ import java.util.Set;
 import static java.util.stream.Collectors.toList;
 
 @Service
+@Slf4j
 public class UserService implements UserDetailsService {
 
   private UserRepository userRepository;
@@ -53,7 +56,19 @@ public class UserService implements UserDetailsService {
     return users.stream().map(UserDTO::new).collect(toList());
   }
 
+  /**
+   * register new User
+   *
+   * @param user actual User bean
+   * @return User
+   */
   public User createNewUser(User user) {
-    return userRepository.save(user);
+    try {
+      log.info("Trying to register new user", user.getUsername());
+      return userRepository.save(user);
+    } catch (InterviewTwitterRuntimeException e) {
+      log.warn("Failed to register new user", e);
+    }
+    return user;
   }
 }
